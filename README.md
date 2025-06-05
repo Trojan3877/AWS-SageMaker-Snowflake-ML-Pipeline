@@ -1,3 +1,6 @@
+![Architecture Diagram](docs/architecture.png)
+
+
 # AWS-SageMaker-Snowflake-ML-Pipeline
 # AWS SageMaker + Snowflake ML Pipeline: Financial Fraud Detection
 
