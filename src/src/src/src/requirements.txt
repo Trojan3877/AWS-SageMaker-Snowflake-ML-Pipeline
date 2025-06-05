@@ -1,0 +1,8 @@
+pandas
+scikit-learn
+snowflake-connector-python
+joblib
+matplotlib
+seaborn
+pytest
+boto3
