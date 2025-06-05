@@ -1,0 +1,11 @@
+[ Snowflake DB (Financial Transactions) ]
+        ↓
+[ AWS Lambda / AWS Glue ] → Data Extraction
+        ↓
+[ SageMaker Notebook / Pipeline ] → Model Training
+        ↓
+[ SageMaker Model Endpoint ] → Real-Time Inference (optional)
+        ↓
+[ Snowflake (Predictions Table) ] → Store predictions
+        ↓
+[ BI / Dashboard ] → Visualization (optional: Streamlit / Quicksight)
