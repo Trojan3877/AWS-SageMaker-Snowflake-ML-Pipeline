@@ -1,30 +1,26 @@
 # src/data_loader.py
 
-"""
-Data Loader Module
-------------------
-This module connects to Snowflake and loads transaction data into a pandas DataFrame.
-"""
-
 import snowflake.connector
 import pandas as pd
+import os
 
-def load_data_from_snowflake(user, password, account, warehouse, database, schema, table):
+def load_data_from_snowflake():
     """
-    Connects to Snowflake and loads data from the specified table.
+    Connects to Snowflake securely using environment variables and loads transaction data.
     """
-    ctx = snowflake.connector.connect(
-        user=user,
-        password=password,
-        account=account,
-        warehouse=warehouse,
-        database=database,
-        schema=schema
+    conn = snowflake.connector.connect(
+        user=os.getenv('SNOWFLAKE_USER'),
+        password=os.getenv('SNOWFLAKE_PASSWORD'),
+        account=os.getenv('SNOWFLAKE_ACCOUNT'),
+        warehouse=os.getenv('SNOWFLAKE_WAREHOUSE'),
+        database=os.getenv('SNOWFLAKE_DATABASE'),
+        schema=os.getenv('SNOWFLAKE_SCHEMA')
     )
     
-    query = f"SELECT * FROM {table};"
+    query = "SELECT * FROM transactions LIMIT 10000;"  # Example table
     
-    df = pd.read_sql(query, ctx)
-    ctx.close()
+    df = pd.read_sql(query, conn)
+    conn.close()
     
     return df
+
