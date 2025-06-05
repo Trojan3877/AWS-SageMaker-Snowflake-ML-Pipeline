@@ -1,3 +1,8 @@
+<p align="center">
+  <img src="docs/fraud_detection_animation.gif" alt="Fraud Detection Motion Visual" width="600"/>
+</p>
+
+
 ![Architecture Diagram](docs/architecture.png)
 
 
