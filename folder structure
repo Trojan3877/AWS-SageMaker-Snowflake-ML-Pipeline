@@ -1,0 +1,23 @@
+AWS-SageMaker-Snowflake-ML-Pipeline/
+│
+├── src/
+│   ├── data_loader.py              # Load data from Snowflake
+│   ├── feature_engineering.py      # Clean and engineer features
+│   ├── model_train.py              # Train model on SageMaker
+│   ├── model_inference.py          # Inference pipeline
+│   ├── utils.py                    # Utility functions
+│
+├── notebooks/
+│   ├── exploratory_data_analysis.ipynb  # EDA in Jupyter
+│   ├── sagemaker_training_pipeline.ipynb  # Training notebook
+│
+├── tests/
+│   ├── test_data_loader.py
+│   ├── test_model_inference.py
+│
+├── docs/
+│   ├── architecture.png
+│
+├── requirements.txt
+├── README.md
+└── LICENSE
