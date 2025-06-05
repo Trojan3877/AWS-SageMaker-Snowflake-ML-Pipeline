@@ -1,3 +1,10 @@
+![image](https://github.com/user-attachments/assets/b25c16f6-a2d0-48ff-8b99-1626f4a19394)
+
+
+
+
+
+
 <p align="center">
   <img src="docs/fraud_detection_animation.gif" alt="Fraud Detection Motion Visual" width="600"/>
 </p>
