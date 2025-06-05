@@ -1,0 +1,13 @@
+[ Snowflake DB → Transactions Table ]
+        ↓
+[ AWS Lambda / AWS Glue (Data Ingestion) ]
+        ↓
+[ SageMaker Training Pipeline ]
+        ↓
+[ SageMaker Model Registry ]
+        ↓
+[ SageMaker Endpoint (Real-Time Inference) ] (Optional Advanced)
+        ↓
+[ Snowflake → Fraud Predictions Table ]
+        ↓
+[ Dashboard (Streamlit or AWS Quicksight) ]
