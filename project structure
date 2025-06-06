@@ -1,0 +1,29 @@
+.
+├── LICENSE
+├── README.md
+├── app.py                             # Flask API for real-time inference
+├── examples/
+│   └── sample_transaction.json        # Example input for /predict endpoint
+├── processing/
+│   ├── job.py                         # SageMaker Processing script (feature engineering)
+│   └── requirements.txt
+├── training/
+│   ├── train.py                       # SageMaker Training script (XGBoost)
+│   └── requirements.txt
+├── deployment/
+│   └── deploy.py                      # SageMaker Model & Endpoint deployment
+├── tests/
+│   ├── test_preprocessing.py          # Unit tests for feature-engineering code
+│   └── test_inference.py              # Smoke-test: load model & predict on toy input
+├── docs/
+│   ├── architecture.png               # Diagram of the full pipeline
+│   ├── benchmarks.md                  # Inference/training metrics
+│   └── metrics.md                     # Detailed performance & cost breakdown
+├── scripts/
+│   └── demo.sh                        # Builds Docker, runs container, and tests endpoint
+├── sql/
+│   └── setup_snowflake.sql            # Snowflake database/schema/table creation script
+├── Dockerfile                         # Builds the inference API container
+└── .github/
+    └── workflows/
+        └── ci.yml                     # GitHub Actions: tests + Docker build
