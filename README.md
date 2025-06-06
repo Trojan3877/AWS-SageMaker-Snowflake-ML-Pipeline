@@ -30,7 +30,7 @@ An end-to-end, production-ready pipeline that ingests raw transaction data into 
 ---
 
 ## Overview
-
+A modular, production-style machine learning pipeline integrating AWS SageMaker for scalable model training and Snowflake as a cloud data warehouse, designed for real-world enterprise data science workflows.
 Financial fraud detection requires both accurate models and reliable, scalable infrastructure. This project demonstrates:
 
 - **Data Ingestion:** Copy raw transaction CSVs into a Snowflake staging table.  
