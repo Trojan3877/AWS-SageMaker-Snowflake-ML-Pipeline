@@ -1,8 +1,15 @@
-# AWS SageMaker + Snowflake ML Pipeline
+![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)
+![Status: Local Only](https://img.shields.io/badge/status-local--only-blue)
+![Platform: Python](https://img.shields.io/badge/platform-python-blue)
+![Cloud: AWS SageMaker](https://img.shields.io/badge/cloud-AWS--SageMaker-orange)
+![Data Warehouse: Snowflake](https://img.shields.io/badge/data--warehouse-Snowflake-lightblue)
+![Capstone Project](https://img.shields.io/badge/project-capstone-blueviolet)
+![Last Commit](https://img.shields.io/github/last-commit/Trojan3877/AWS-SageMaker-Snowflake-ML-Pipeline)
 
-[![CI](https://github.com/Trojan3877/AWS-SageMaker-Snowflake-ML-Pipeline/actions/workflows/ci.yml/badge.svg)](https://github.com/Trojan3877/AWS-SageMaker-Snowflake-ML-Pipeline/actions/workflows/ci.yml)
-[![Codecov](https://codecov.io/gh/Trojan3877/AWS-SageMaker-Snowflake-ML-Pipeline/branch/main/graph/badge.svg)](https://codecov.io/gh/Trojan3877/AWS-SageMaker-Snowflake-ML-Pipeline)
-[![License](https://img.shields.io/github/license/Trojan3877/AWS-SageMaker-Snowflake-ML-Pipeline)](LICENSE)
+
+
+
+
 
 An end-to-end, production-ready pipeline that ingests raw transaction data into Snowflake, trains an XGBoost fraud-detection model on SageMaker, and serves real-time predictions via a Flask API.  
 
