@@ -74,7 +74,6 @@ Financial fraud detection requires both accurate models and reliable, scalable i
 6. **Dashboard / Client**  
    - Consumes API responses to visualize fraud scores.
 
----
 
 ## Installation & Quick Start
 
@@ -89,3 +88,17 @@ Financial fraud detection requires both accurate models and reliable, scalable i
 ```bash
 git clone https://github.com/Trojan3877/AWS-SageMaker-Snowflake-ML-Pipeline.git
 cd AWS-SageMaker-Snowflake-ML-Pipeline
+
+Design Questions & Reflections
+Q: What problem does this project aim to solve?
+A: This project was built to explore how to integrate AWS SageMaker and Snowflake into a structured ML pipeline that handles data retrieval, preprocessing, model training, and deployment in a way that mirrors real cloud-based workflows. The goal was to go beyond standalone models and connect cloud compute with scalable data storage and orchestration.
+Q: Why did I choose this architecture and approach instead of a simpler design?
+A: I chose to combine Snowflake for data warehousing and SageMaker for model training because each tool plays to its strengths — Snowflake for scalable data ingestion and transformation, and SageMaker for managed training and deployment. This approach reflects how real production systems separate concerns rather than putting everything in a single tool or script.
+Q: What were the main trade-offs I made?
+A: The main trade-off was complexity versus reproducibility. A simpler, local script might have let me prototype faster, but it wouldn’t have shown how to connect storage, compute, and orchestration in a modular, repeatable way. By investing in cloud integration and clear pipeline stages, I gained a more realistic architecture at the cost of more initial configuration effort.
+Q: What didn’t work as expected?
+A: Early versions ran into permission or credential configuration issues between Snowflake and AWS services, which highlighted how cloud infrastructure adds friction around identity and access management. Solving this required diving into IAM policies and secure credential handling, which improved my understanding of real-world cloud deployments.
+Q: What did I learn from building this project?
+A: I learned that cloud-based ML workflows are as much about data plumbing and access control as they are about model training. Ensuring that pipelines are secure, repeatable, and observable requires deliberate setup of logging, monitoring, and error handling — not just simple scripts.
+Q: If I had more time or resources, what would I improve next?
+A: I would add automated testing and validation at each stage of the pipeline so that changes in data schemas or model versions can be caught earlier. I’d also explore adding metrics and dashboards to monitor training performance and inference behavior over time.
