@@ -10,10 +10,10 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# 4. Copy the rest of your code (ETL scripts, model, API, etc.)
+# 4. Copy the rest of the application code
 COPY . .
 
-# 5. Expose whatever port your Flask/API listens on (e.g. 8080)
+# 5. Expose the port the Flask API listens on
 EXPOSE 8080
 
 # 6. Default command to launch the service

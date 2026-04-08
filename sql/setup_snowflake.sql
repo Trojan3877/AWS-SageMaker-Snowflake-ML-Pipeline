@@ -1,9 +1,4 @@
-
----
-
-### File: `sql/setup_snowflake.sql`
-
-```sql
+-- sql/setup_snowflake.sql
 -- Create a new database for fraud detection (if not exists)
 CREATE OR REPLACE DATABASE fraud_db;
 
@@ -27,7 +22,6 @@ CREATE OR REPLACE TABLE public.raw_transactions (
   card_present               BOOLEAN,
   device_id                  STRING,
   ip_address                 STRING
-  -- Add other columns as needed for your feature engineering
 );
 
 -- Example: Copy data from an internal stage to this table
@@ -35,7 +29,7 @@ CREATE OR REPLACE TABLE public.raw_transactions (
 -- FROM @your_internal_stage/sample_transactions.csv
 -- FILE_FORMAT = (TYPE = 'CSV' FIELD_OPTIONALLY_ENCLOSED_BY '"' SKIP_HEADER = 1);
 
--- Grant privileges (optional: adjust roles/users accordingly)
-GRANT USAGE ON DATABASE fraud_db TO ROLE <YOUR_ROLE>;
-GRANT USAGE ON SCHEMA fraud_db.public TO ROLE <YOUR_ROLE>;
-GRANT INSERT, SELECT, UPDATE, DELETE ON ALL TABLES IN SCHEMA fraud_db.public TO ROLE <YOUR_ROLE>;
+-- Grant privileges (adjust roles/users accordingly)
+-- GRANT USAGE ON DATABASE fraud_db TO ROLE <YOUR_ROLE>;
+-- GRANT USAGE ON SCHEMA fraud_db.public TO ROLE <YOUR_ROLE>;
+-- GRANT INSERT, SELECT, UPDATE, DELETE ON ALL TABLES IN SCHEMA fraud_db.public TO ROLE <YOUR_ROLE>;

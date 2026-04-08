@@ -1,14 +1,14 @@
 # tests/test_data_loader.py
 
 import pytest
-from src import data_loader
 import pandas as pd
+from src import data_loader
+
 
 def test_load_data_structure(monkeypatch):
     """
     Unit test to ensure Snowflake loader returns correct structure.
     """
-    # Mock function (replace Snowflake call with local test)
     def mock_load_data():
         return pd.DataFrame({
             'transaction_id': [1, 2, 3],

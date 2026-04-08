@@ -1,0 +1,14 @@
+{
+  "transaction_id": "TXN-001234",
+  "account_id": "ACC-567890",
+  "transaction_amount": 129.50,
+  "transaction_date": "2024-01-15",
+  "merchant_id": "MERCH-42",
+  "account_age_days": 365,
+  "num_prev_transactions": 48,
+  "is_foreign_transaction": false,
+  "transaction_category": "retail",
+  "card_present": true,
+  "device_id": "DEV-9876",
+  "ip_address": "192.168.1.1"
+}
