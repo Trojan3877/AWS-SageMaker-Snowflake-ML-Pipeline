@@ -1,48 +1,19 @@
-name: CI
+# config/agent_config.yaml
 
-on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+snowflake:
+  account: "your_account_locator"
+  warehouse: "COMPUTE_WH"
+  database: "PROD_DB"
+  schema: "PUBLIC"
+  table_name: "CUSTOMER_FEATURES"
+  drift_threshold_psi: 0.1  # Population Stability Index limit
+  min_new_records_trigger: 10000
 
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.9'
-
-      - name: Install dependencies
-        run: |
-          pip install --upgrade pip
-          pip install -r requirements.txt
-
-      - name: Run tests
-        run: pytest tests/ --maxfail=1 --disable-warnings -q
-
-  docker:
-    runs-on: ubuntu-latest
-    needs: test
-    steps:
-      - uses: actions/checkout@v3
-
-      - name: Build Docker image
-        run: docker build -t fraud-pipeline:latest .
-
-      - name: Login to Docker Hub
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        uses: docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASS }}
-
-      - name: Push image
-        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-        run: |
-          docker tag fraud-pipeline:latest ${{ secrets.DOCKER_USERNAME }}/fraud-pipeline:latest
-          docker push ${{ secrets.DOCKER_USERNAME }}/fraud-pipeline:latest
+sagemaker:
+  region: "us-east-1"
+  role_arn: "arn:aws:iam::123456789012:role/SageMakerExecutionRole"
+  image_uri: "123456789012.dkr.ecr.us-east-1.amazonaws.com/xgboost-production:latest"
+  instance_type: "ml.m5.xlarge"
+  instance_count: 1
+  s3_output_path: "s3://my-snowflake-sagemaker-pipeline-bucket/models/"
+  target_accuracy_threshold: 0.88
