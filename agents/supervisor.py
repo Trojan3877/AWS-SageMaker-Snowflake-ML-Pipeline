@@ -1,7 +1,6 @@
 # agents/supervisor.py
 
 import os
-import yaml
 import logging
 from datetime import datetime
 
@@ -20,12 +19,9 @@ class MLOpsSupervisor:
     The central coordinator routing tasks based on state transitions, 
     telemetry, and performance thresholds.
     """
-    def __init__(self, config_path: str):
-        if not os.path.exists(config_path):
-            raise FileNotFoundError(f"Configuration file context missing at verified path target: {config_path}")
-            
-        with open(config_path, 'r') as file:
-            self.config = yaml.safe_load(file)
+    def __init__(self, config_dict: dict):
+        # Configuration is now loaded directly from an inline dictionary config
+        self.config = config_dict
         
         self.sf_agent = SnowflakeMonitorAgent(self.config['snowflake'])
         self.sm_agent = SageMakerOpsAgent(self.config['sagemaker'])
@@ -60,12 +56,9 @@ class MLOpsSupervisor:
 
     def log_to_daily_file(self, status: str, message: str):
         log_entry = f"| {datetime.now().strftime('%Y-%m-%d %H:%M')} | {status} | {message} |\n"
-        # Safely resolve target log directory destination path relative to the runtime root location
-        current_dir = os.path.dirname(os.path.abspath(__file__))
-        log_location = os.path.normpath(os.path.join(current_dir, "..", "DailyLog.md"))
         
-        if not os.path.exists(log_location) and os.path.exists("DailyLog.md"):
-            log_location = "DailyLog.md"
+        # Look for DailyLog.md directly at the repository root folder
+        log_location = "DailyLog.md"
             
         try:
             with open(log_location, "a") as f:
@@ -75,13 +68,27 @@ class MLOpsSupervisor:
             logger.error(f"Failed to append metadata telemetry entry blocks onto tracking ledger filesystem: {str(e)}")
 
 if __name__ == "__main__":
-    # Absolute path calculation lookup standard
-    current_directory = os.path.dirname(os.path.abspath(__file__))
-    config_location = os.path.normpath(os.path.join(current_directory, "..", "config", "agent_config.yaml"))
-    
-    # Fallback absolute check optimization supporting direct root folder runs natively
-    if not os.path.exists(config_location):
-        config_location = "config/agent_config.yaml"
+    # INLINE HARDCODED CONFIGURATION - Bypasses external file lookup entirely
+    embedded_config = {
+        'snowflake': {
+            'account': "your_account_locator",
+            'warehouse': "COMPUTE_WH",
+            'database': "PROD_DB",
+            'schema': "PUBLIC",
+            'table_name': "CUSTOMER_FEATURES",
+            'drift_threshold_psi': 0.1,
+            'min_new_records_trigger': 10000
+        },
+        'sagemaker': {
+            'region': "us-east-1",
+            'role_arn': "arn:aws:iam::123456789012:role/SageMakerExecutionRole",
+            'image_uri': "123456789012.dkr.ecr.us-east-1.amazonaws.com/xgboost-production:latest",
+            'instance_type': "ml.m5.xlarge",
+            'instance_count': 1,
+            's3_output_path': "s3://my-snowflake-sagemaker-pipeline-bucket/models/",
+            'target_accuracy_threshold': 0.88
+        }
+    }
         
-    supervisor = MLOpsSupervisor(config_location)
+    supervisor = MLOpsSupervisor(embedded_config)
     supervisor.run_pipeline_orchestration()
