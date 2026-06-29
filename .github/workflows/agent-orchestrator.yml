@@ -23,7 +23,7 @@ jobs:
     - name: Set up Python Runtime
       uses: actions/setup-python@v5
       with:
-        python-python-version: '3.11'
+        python-version: '3.11'
         cache: 'pip'
 
     - name: Install System Dependencies
@@ -33,6 +33,9 @@ jobs:
 
     - name: Execute Autonomous MLOps Supervisor
       env:
+        # Resolves ModuleNotFoundError by forcing Python to treat the repository root as a search path
+        PYTHONPATH: .
+        
         # Secure credentials mapped from GitHub Repository Secrets
         SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
         SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
